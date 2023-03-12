@@ -1,15 +1,42 @@
-const { Client, Intents } =require("discord.js");
+const Discord = require("discord.js");
+const client = new Discord.Client();
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
-
-client.once('ready', () => {
-    console.log('Bot is online!');
+client.on("ready", () => {
+  console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.on('messageCreate', message => {
-    if (message.content === '!Hi') {
-        message.channel.send('Hi !');
-    }
+client.on("message", (msg) => {
+  if (msg.content === "ping") {
+    msg.reply("Pong!");
+  }
 });
 
-client.login(process.env.TOKEN);
+client.on("guildMemberAdd", (member) => {
+  const channel = member.guild.channels.cache.find(
+    (ch) => ch.name === "welcome"
+  );
+  if (!channel) return;
+  channel.send(`Welcome to the server, ${member}`);
+});
+
+client.on("messageReactionAdd", (reaction, user) => {
+  if (reaction.emoji.name === "👍") {
+    const role = reaction.message.guild.roles.cache.find(
+      (r) => r.name === "Supporter"
+    );
+    const member = reaction.message.guild.members.cache.find(
+      (m) => m.id === user.id
+    );
+    member.roles.add(role);
+  }
+});
+
+client.on("messageDelete", (msg) => {
+  const channel = msg.guild.channels.cache.find(
+    (ch) => ch.name === "logs"
+  );
+  if (!channel) return;
+  channel.send(`Message deleted: ${msg.content}`);
+});
+
+client.login("your-token-goes-here");
