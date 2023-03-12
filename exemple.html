@@ -1,54 +1,92 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>My Website</title>
-	<meta charset="UTF-8">
-	<meta name="description" content="This is my website.">
-	<meta name="keywords" content="HTML, CSS, JavaScript">
-	<meta name="author" content="John Doe">
+	<title>My Webpage</title>
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<header>
-		<h1>Welcome to My Website</h1>
+		<h1>Welcome to my webpage</h1>
 		<nav>
 			<ul>
 				<li><a href="#">Home</a></li>
 				<li><a href="#">About</a></li>
-				<li><a href="#">Services</a></li>
 				<li><a href="#">Contact</a></li>
 			</ul>
 		</nav>
 	</header>
+
 	<main>
 		<section>
-			<h2>About Me</h2>
-			<p>Hi, my name is John Doe and I'm a web developer. I love building websites and learning new things about web development.</p>
-			<p>In my free time, I enjoy hiking and playing guitar.</p>
+			<h2>About me</h2>
+			<p>Hi, my name is John and I'm a web developer.</p>
 		</section>
+
 		<section>
-			<h2>My Services</h2>
+			<h2>My projects</h2>
 			<ul>
-				<li>Web Development</li>
-				<li>Web Design</li>
-				<li>SEO</li>
+				<li><a href="#">Project 1</a></li>
+				<li><a href="#">Project 2</a></li>
+				<li><a href="#">Project 3</a></li>
 			</ul>
 		</section>
-		<section>
-			<h2>Contact Me</h2>
-			<form action="submit.php" method="post">
-				<label for="name">Name:</label>
-				<input type="text" id="name" name="name"><br>
-				<label for="email">Email:</label>
-				<input type="email" id="email" name="email"><br>
-				<label for="message">Message:</label>
-				<textarea id="message" name="message"></textarea><br>
-				<input type="submit" value="Send">
-			</form>
-		</section>
 	</main>
+
 	<footer>
-		<p>&copy; Hubyp</p>
+		<p>Copyright &copy; Palma 2023</p>
 	</footer>
+	<style>
+	body {
+	margin: 0;
+	padding: 0;
+	font-family: Arial, sans-serif;
+}
+
+header {
+	background-color: #333;
+	color: #fff;
+	padding: 20px;
+}
+
+nav ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+nav li {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+nav a {
+	color: #fff;
+	text-decoration: none;
+}
+
+main {
+	max-width: 800px;
+	margin: 20px auto;
+	padding: 20px;
+}
+
+section {
+	margin-bottom: 20px;
+}
+
+h1, h2 {
+	font-weight: normal;
+}
+
+footer {
+	background-color: #333;
+	color: #fff;
+	padding: 20px;
+	text-align: center;
+}
+
+	</style>
 </body>
 </html>
+
+
