@@ -1,25 +1,44 @@
+using Discord;
+using Discord.WebSocket;
 using System;
+using System.Threading.Tasks;
 
-class Program
+namespace MyBot
 {
-    static void Main(string[] args)
+    public class Program
     {
-        Console.Write("Enter a number: ");
-        int n = int.Parse(Console.ReadLine());
+        private DiscordSocketClient _client;
 
-        int fact = Factorial(n);
-        Console.WriteLine($"The factorial of {n} is {fact}");
-    }
+        public static void Main(string[] args)
+            => new Program().MainAsync().GetAwaiter().GetResult();
 
-    static int Factorial(int n)
-    {
-        if (n == 0)
+        public async Task MainAsync()
         {
-            return 1;
+            _client = new DiscordSocketClient();
+
+            _client.Log += Log;
+
+            string token = "your_bot_token_here";
+            await _client.LoginAsync(TokenType.Bot, token);
+            await _client.StartAsync();
+
+            _client.MessageReceived += MessageReceived;
+
+            await Task.Delay(-1);
         }
-        else
+
+        private Task Log(LogMessage msg)
         {
-            return n * Factorial(n - 1);
+            Console.WriteLine(msg.ToString());
+            return Task.CompletedTask;
+        }
+
+        private async Task MessageReceived(SocketMessage message)
+        {
+            if (message.Content == "!ping")
+            {
+                await message.Channel.SendMessageAsync("Pong!");
+            }
         }
     }
 }
